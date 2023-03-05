@@ -1,0 +1,20 @@
+{
+  "versionOutdated": "Your version is outdated. Please update to the latest version.",
+  "noPermission": "You don't have permission to use this command.",
+  "playerNotFound": "The player you've specified was not found.",
+
+  "staffModeEnabled": "You've enabled staff mode.",
+  "staffModeDisabled": "You've disabled staff mode.",
+
+  "playerFreezeBypass": "You can't freeze this player.",
+
+  "playerFreezeMessage": "You've been frozen, so you can't move.",
+
+  "playerFreeze": "You've frozen {player}.",
+  "playerUnfreeze": "You've unfrozen {player}.",
+  "playerFreezeBy": "You've been frozen by {player}.",
+  "playerUnfreezeBy": "You've been unfrozen by {player}.",
+
+  "errorWhileProcessingCommand": "An error occurred while processing the command. Please, contact the server administrator.",
+
+}

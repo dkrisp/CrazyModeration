@@ -1,0 +1,82 @@
+###############################################################
+##                                                           ##
+##                                                           ##
+##             CRAZY MODERATION - VERSION 1.0.0              ##
+##                         BY KRISP                          ##
+##                                                           ##
+##                                                           ##
+###############################################################
+
+# Few things to know before editing language files:
+# - To colorize your messages, you need to use the color code,
+#   which starts with the symbol "&" and ends with a letter or
+#   a number. For example, "&a" will colorize your message in
+#   green. You can find all the color codes here: https://minecraft.gamepedia.com/Formatting_codes
+#
+#   Notice: All the messages are written in the folder "language"
+#
+# - You can use the placeholder "{player}" to replace the name
+#   of the player in your messages.
+#
+# - You can use the placeholder "{reason}" to replace the reason
+#   of the player in your messages.
+#
+# - You can use the placeholder "{time}" to replace the time
+#   of the player in your messages.
+#
+# - You can use the placeholder "{punishment_type}" to replace the
+#   punishment of the player in your messages.
+#
+# - You can use the placeholder "{punishment_id}" to replace the
+#   punishment id of the player in your messages
+#
+# - You can use the placeholder "{punisher}" to replace the
+#   punishment punisher of the player in your messages.
+
+# Please do not edit this config version, otherwise you config file
+# will not be updated when you update your plugin and you'll get a
+# lot of errors. When this file will be updated, none of your changes
+# will be lost.
+#
+# Notice: If the config needs to be updated, the plugin will also
+#         update the language files.
+config-version: 1.0.0
+
+# Default language are [en: english, fr: french]
+# If you want to translate your own language, you need to create
+# a file in the folder "language" with the name of your language
+# then set the language in the config.yml by the name of the file
+# without the extension ".json" of the file.
+language: "en"
+
+# The prefix of the plugin. You can use the color code.
+prefix: "&8[&cCrazyModeration&8]"
+
+# Prevents the plugin from crashing and lose players data if the
+# plugin is not to save before the server crashed.
+# If you set this option to true, the plugin will save the players
+# data every X minutes and when the server is stopping.
+# Notice: The server won't lag because the runnable is in async.
+# If you set this option to false, the plugin will save the players
+# data when the server is stopping.
+preventCrash: true
+preventCrashInterval: 300 # In seconds, notice: It can't be less than 60 seconds.
+
+# Saving type of the plugin. You can choose between "flat" and "mysql".
+# If you choose "flat", the plugin will save the players data in the
+# folder "data" in the plugin folder.
+# If you choose "mysql", the plugin will save the players data in a
+# MySQL database that you need to configure.
+savingType: "flat"
+
+# MySQL's configuration
+# Notice: These information are only use if you choose "mysql" in
+#         the saving type option above.
+mySql:
+  host: "localhost"
+  port: 3306
+  database: "database"
+  username: "username"
+  password: "password"
+
+
