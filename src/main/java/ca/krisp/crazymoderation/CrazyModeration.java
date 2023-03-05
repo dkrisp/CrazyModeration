@@ -88,6 +88,7 @@ public class CrazyModeration extends RisenPlugin {
         if(isDebug()) Logger.success("Configuration file successfully loaded.");
     }
 
+
     public boolean isDebug() {
         return debug;
     }

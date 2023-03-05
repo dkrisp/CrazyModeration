@@ -3,14 +3,13 @@ package ca.krisp.crazymoderation.language;
 import ca.krisp.crazymoderation.CrazyModeration;
 import ca.krisp.crazymoderation.utils.Color;
 import net.risenteam.risencore.utils.Logger;
-import org.bukkit.ChatColor;
-import org.json.*;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 
 public class LanguageParser {
 
@@ -28,12 +27,18 @@ public class LanguageParser {
             return;
         }
 
-        try{
-            obj = (JSONObject) new JSONParser().parse("JSON");
+        try(BufferedReader reader = new BufferedReader(new FileReader(file))){
+            StringBuilder builder = new StringBuilder();
+            while (reader.ready()) {
+                builder.append(reader.readLine());
+            }
+            obj = (JSONObject) new JSONParser().parse(builder.toString());
             Logger.success("Language file loaded for language : " + language);
         }catch (ParseException e){
             Logger.fail("Failed to parse JSON!");
             e.printStackTrace();
+        }catch (Exception e){
+            Logger.fail("Failed to read language file.");
         }
     }
 

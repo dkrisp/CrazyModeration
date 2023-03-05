@@ -1,0 +1,7 @@
+name: CrazyModeration
+authors: [ Krisp ]
+version: 1.0.0
+main: ca.krisp.crazymoderation.CrazyModeration
+api-version: 1.13
+description: A moderation plugin for every servers.
+website: https://github.com/dkrisp/CrazyModeration
