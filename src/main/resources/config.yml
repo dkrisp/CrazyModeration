@@ -72,11 +72,16 @@ savingType: "flat"
 # MySQL's configuration
 # Notice: These information are only use if you choose "mysql" in
 #         the saving type option above.
-mySql:
+mysql:
   host: "localhost"
   port: 3306
   database: "database"
   username: "username"
   password: "password"
 
+# This option will be use only if you want to see the errors to
+# fix them. If you don't want to see the errors, please set this
+# option to false. If you want to report any errors, please set
+# this option to true and send me the errors in the console.
+debug: false
 
