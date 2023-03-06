@@ -1,5 +1,6 @@
 package ca.krisp.crazymoderation;
 
+import ca.krisp.crazymoderation.commands.CommandCrazyModeration;
 import ca.krisp.crazymoderation.commands.CommandFreeze;
 import ca.krisp.crazymoderation.commands.CommandManager;
 import ca.krisp.crazymoderation.commands.CommandSS;
@@ -38,6 +39,8 @@ public class CrazyModeration extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
 
+        this.saveResource("languages/en.json", false);
+
         LanguageParser.init(this);
 
         this.debug = this.getConfig().getBoolean("debug");
@@ -52,6 +55,7 @@ public class CrazyModeration extends JavaPlugin {
 
         this.commandManager.registerCommand(new CommandSS(this));
         this.commandManager.registerCommand(new CommandFreeze(this));
+        this.commandManager.registerCommand(new CommandCrazyModeration(this));
 
         this.playerManager.loadPlayers();
 

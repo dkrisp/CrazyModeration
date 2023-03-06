@@ -1,6 +1,10 @@
 {
   "versionOutdated": "Your version is outdated. Please update to the latest version.",
   "noPermission": "You don't have permission to use this command.",
+  "pluginVersion": "Your CrazyModeration plugin is running on {version}.",
+
+  "pluginReloaded": "The plugin has been reloaded.",
+
   "playerNotFound": "The player you've specified was not found.",
 
   "staffModeEnabled": "You've enabled staff mode.",

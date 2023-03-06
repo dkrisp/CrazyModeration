@@ -1,5 +1,6 @@
 package ca.krisp.crazymoderation.commands;
 
+import ca.krisp.crazymoderation.language.LanguageParser;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -9,10 +10,12 @@ public abstract class CrazyCommand extends Command {
 
     public CrazyCommand(String name, String ... aliases) {
         super(name, "", "/" + name, Arrays.asList(aliases));
+        this.setPermissionMessage(LanguageParser.get("noPermission"));
     }
 
     public CrazyCommand(String name, String description, String usageMessage, String ... aliases) {
         super(name, description, usageMessage, Arrays.asList(aliases));
+        this.setPermissionMessage(LanguageParser.get("noPermission"));
     }
 
     @Override

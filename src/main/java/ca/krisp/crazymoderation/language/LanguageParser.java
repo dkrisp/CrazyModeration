@@ -7,9 +7,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 
 public class LanguageParser {
 
@@ -36,6 +34,39 @@ public class LanguageParser {
             }
             obj = (JSONObject) new JSONParser().parse(builder.toString());
             Logger.success("Language file loaded for language : " + language);
+            //read the resource file
+            //get default file to copy
+            InputStream resource = moderation.getResource("languages/" + language + ".json");
+            if(resource == null){
+                Logger.fail("Language file does not exist in the jar!");
+                resource = moderation.getResource("languages/en.json");
+                return;
+            }
+
+            //read the default file
+            try(BufferedReader defaultReader = new BufferedReader(new InputStreamReader(resource))){
+                StringBuilder defaultBuilder = new StringBuilder();
+                while (defaultReader.ready()) {
+                    defaultBuilder.append(defaultReader.readLine());
+                }
+                JSONObject defaultObj = (JSONObject) new JSONParser().parse(defaultBuilder.toString());
+                //compare the two files
+                for(Object key : defaultObj.keySet()){
+                    if(!obj.containsKey(key)){
+                        Logger.fail("Language file is missing key: " + key);
+                        Logger.warn("Implementing key in language file.");
+                        obj.put(key, defaultObj.get(key));
+                    }
+                }
+                //save the file
+                try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
+                    writer.write(obj.toJSONString());
+                    Logger.success("Language file updated!");
+                }catch (IOException e){
+                    Logger.fail("Failed to save language file!");
+                    e.printStackTrace();
+                }
+            }
         }catch (ParseException e){
             Logger.fail("Failed to parse JSON!");
             e.printStackTrace();
@@ -44,10 +75,15 @@ public class LanguageParser {
         }
     }
 
-    public static String get(String message){
+    public static String get(String key){
         if(obj == null)
             return "Language file not loaded!";
-        return prefix + " " + Color.colorize((String) obj.get(message));
+        Object objKey = obj.get(key);
+        if(objKey == null){
+            return "Language key not found! Please report this to the admin. Key: " + key + "";
+        }
+        String message = (String) objKey;
+        return prefix + " " + Color.colorize(message);
     }
 
     public static String getUnformatted(String message){
