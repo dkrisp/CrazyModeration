@@ -15,8 +15,6 @@ public class LanguageParser {
     private static String prefix;
 
     public static void init(CrazyModeration moderation) {
-        //TODO: Update languages files depending on config version.
-
         prefix = Color.colorize(moderation.getConfig().getString("prefix"));
         String language = moderation.getConfig().getString("language");
 
