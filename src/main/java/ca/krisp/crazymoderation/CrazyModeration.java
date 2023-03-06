@@ -1,18 +1,25 @@
 package ca.krisp.crazymoderation;
 
 import ca.krisp.crazymoderation.commands.CommandFreeze;
+import ca.krisp.crazymoderation.commands.CommandManager;
 import ca.krisp.crazymoderation.commands.CommandSS;
 import ca.krisp.crazymoderation.language.LanguageParser;
 import ca.krisp.crazymoderation.managers.PlayerManager;
 import ca.krisp.crazymoderation.task.PlayerDataSavingTask;
 import ca.krisp.crazymoderation.task.ServerAsyncTask;
-import net.risenteam.risencore.RisenPlugin;
-import net.risenteam.risencore.commands.CommandManager;
-import net.risenteam.risencore.utils.Logger;
+import ca.krisp.crazymoderation.utils.Logger;
+import com.google.gson.Gson;
+import fr.minuskube.inv.InventoryManager;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class CrazyModeration extends RisenPlugin {
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
+public class CrazyModeration extends JavaPlugin {
+
+    private final Gson gson = new Gson();
     private final CommandManager commandManager;
     private final PlayerManager playerManager;
 
@@ -22,7 +29,7 @@ public class CrazyModeration extends RisenPlugin {
     private int taskServerID = -1;
 
     public CrazyModeration() {
-        commandManager = new CommandManager();
+        commandManager = new CommandManager(this);
         this.playerManager = new PlayerManager(this);
     }
 
@@ -31,7 +38,17 @@ public class CrazyModeration extends RisenPlugin {
         saveDefaultConfig();
         reloadConfig();
 
+        LanguageParser.init(this);
+
         this.debug = this.getConfig().getBoolean("debug");
+        if(isDebug()) Logger.log("Debug mode is enabled.");
+
+
+        if(isDebug()) Logger.log("Loading inventory manager.");
+        inventoryManager = new InventoryManager(this);
+        inventoryManager.init();
+        if(isDebug()) Logger.log("Inventory manager loaded.");
+
 
         this.commandManager.registerCommand(new CommandSS(this));
         this.commandManager.registerCommand(new CommandFreeze(this));
@@ -62,15 +79,40 @@ public class CrazyModeration extends RisenPlugin {
     }
 
     @Override
+    public void saveDefaultConfig() {
+        super.saveDefaultConfig();
+
+        if(isDebug()) Logger.log("Saving default configuration file.");
+        String currentVersion = this.getConfig().getString("config-version", "null");
+
+        if(currentVersion.equalsIgnoreCase(this.getDescription().getVersion())){
+            if(isDebug()) Logger.log("Configuration file is up to date.");
+            return;
+        }
+
+        if(isDebug()) Logger.log("Configuration file is outdated. Updating...");
+
+        InputStream resource = this.getResource("config.yml");
+        YamlConfiguration yamlConfiguration = YamlConfiguration.loadConfiguration(new InputStreamReader(resource));
+
+        //Copy new key from default config
+        for(String key : yamlConfiguration.getKeys(true)){
+            if(!this.getConfig().contains(key)){
+                this.getConfig().set(key, yamlConfiguration.get(key));
+            }
+        }
+
+        this.saveConfig();
+        if(isDebug()) Logger.success("Configuration file successfully updated.");
+    }
+
+    @Override
     public void reloadConfig() {
         super.reloadConfig();
         if(isDebug()) {
             Logger.log("Loading configuration file.");
             Logger.log("Config version: " + this.getConfig().getString("config-version", this.getDescription().getVersion()));
         }
-
-
-        LanguageParser.init(this);
 
         boolean preventCrash = this.getConfig().getBoolean("preventCrash");
         long preventCrashInterval = Math.max(this.getConfig().getLong("preventCrashInterval"), 60) * 20L;
@@ -91,5 +133,15 @@ public class CrazyModeration extends RisenPlugin {
 
     public boolean isDebug() {
         return debug;
+    }
+
+    public Gson getGson() {
+        return gson;
+    }
+
+    private static InventoryManager inventoryManager;
+
+    public static InventoryManager getInventoryManager() {
+        return inventoryManager;
     }
 }

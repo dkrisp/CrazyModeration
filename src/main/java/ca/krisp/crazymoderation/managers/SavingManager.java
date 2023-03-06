@@ -2,7 +2,7 @@ package ca.krisp.crazymoderation.managers;
 
 import ca.krisp.crazymoderation.CrazyModeration;
 import ca.krisp.crazymoderation.player.CMPlayer;
-import net.risenteam.risencore.utils.Logger;
+import ca.krisp.crazymoderation.utils.Logger;
 import org.json.simple.JSONObject;
 
 import java.io.File;

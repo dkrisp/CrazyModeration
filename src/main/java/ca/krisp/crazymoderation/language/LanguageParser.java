@@ -2,7 +2,7 @@ package ca.krisp.crazymoderation.language;
 
 import ca.krisp.crazymoderation.CrazyModeration;
 import ca.krisp.crazymoderation.utils.Color;
-import net.risenteam.risencore.utils.Logger;
+import ca.krisp.crazymoderation.utils.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -17,6 +17,8 @@ public class LanguageParser {
     private static String prefix;
 
     public static void init(CrazyModeration moderation) {
+        //TODO: Update languages files depending on config version.
+
         prefix = Color.colorize(moderation.getConfig().getString("prefix"));
         String language = moderation.getConfig().getString("language");
 

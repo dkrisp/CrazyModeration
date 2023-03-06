@@ -3,19 +3,17 @@ package ca.krisp.crazymoderation.commands;
 import ca.krisp.crazymoderation.CrazyModeration;
 import ca.krisp.crazymoderation.language.LanguageParser;
 import ca.krisp.crazymoderation.player.CMPlayer;
-import net.risenteam.risencore.commands.RisenCommand;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class CommandFreeze extends RisenCommand {
+public class CommandFreeze extends CrazyCommand {
 
     private final CrazyModeration crazyModeration;
 
     public CommandFreeze(CrazyModeration crazyModeration) {
         super("freeze");
         this.setPermission("crazymoderation.freeze");
-        this.setPermissionMessage("You do not have permission to use this command!");
         this.crazyModeration = crazyModeration;
     }
 
