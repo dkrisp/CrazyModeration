@@ -1,6 +1,7 @@
 package ca.krisp.crazymoderation.commands;
 
 import ca.krisp.crazymoderation.CrazyModeration;
+import ca.krisp.crazymoderation.gui.GuiSS;
 import org.bukkit.entity.Player;
 
 public class CommandSS extends CrazyPlayerCommand {
@@ -14,6 +15,5 @@ public class CommandSS extends CrazyPlayerCommand {
 
     @Override
     public void onCommand(Player player, String label, String[] args) {
-
     }
 }

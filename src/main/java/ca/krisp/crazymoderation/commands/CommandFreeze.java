@@ -3,6 +3,7 @@ package ca.krisp.crazymoderation.commands;
 import ca.krisp.crazymoderation.CrazyModeration;
 import ca.krisp.crazymoderation.language.LanguageParser;
 import ca.krisp.crazymoderation.player.CMPlayer;
+import ca.krisp.crazymoderation.utils.Logger;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -39,6 +40,9 @@ public class CommandFreeze extends CrazyCommand {
         CMPlayer cmPlayer = this.crazyModeration.getPlayerManager().getPlayer(player);
         if (cmPlayer == null) {
             sender.sendMessage(LanguageParser.get("errorWhileProcessingCommand"));
+            if(this.crazyModeration.isDebug()) {
+                Logger.error("Player " + player.getName() + " is not in the player manager!");
+            }
             return;
         }
 
@@ -51,6 +55,7 @@ public class CommandFreeze extends CrazyCommand {
             sender.sendMessage(LanguageParser.get("playerFreeze").replace("{player}", player.getName()));
             player.sendMessage(LanguageParser.get("playerFreezeBy").replace("{player}", sender.getName()));
         }
+
 
     }
 }

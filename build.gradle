@@ -21,7 +21,6 @@ jar{
     from {
         configurations.runtimeClasspath.collect {
             if(it.name.equals("smart-invs-1.2.7.jar") || it.name.equals("json-simple-1.1.jar")){
-                println it.name
                 if(it.isDirectory()){
                     it
                 } else {

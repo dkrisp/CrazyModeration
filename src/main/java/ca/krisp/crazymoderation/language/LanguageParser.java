@@ -58,7 +58,17 @@ public class LanguageParser {
                 }
                 //save the file
                 try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
-                    writer.write(obj.toJSONString());
+                    String str = obj.toJSONString();
+                    //reformat json string
+                    StringBuilder beautifuler = new StringBuilder();
+
+                    beautifuler.append("{\n");
+                    for (String s : str.replace("{", "").replace("}", "").split(",")) {
+                        beautifuler.append(s).append(",\n");
+                    }
+                    beautifuler.append("}");
+
+                    writer.write(beautifuler.toString());
                     Logger.success("Language file updated!");
                 }catch (IOException e){
                     Logger.fail("Failed to save language file!");

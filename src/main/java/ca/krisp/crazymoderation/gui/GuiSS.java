@@ -14,7 +14,7 @@ public class GuiSS implements InventoryProvider {
     
     @Override
     public void init(Player player, InventoryContents contents) {
-        //TODO: Add items to the inventory
+        //TODO: Add items to the inventory MultiVersions
     }
 
     @Override

@@ -31,5 +31,7 @@ public class CommandCrazyModeration extends CrazyCommand{
             sender.sendMessage(LanguageParser.get("pluginVersion").replace("{version}", this.crazyModeration.getDescription().getVersion()));
             return;
         }
+
+        //TODO: HELP MENU
     }
 }
