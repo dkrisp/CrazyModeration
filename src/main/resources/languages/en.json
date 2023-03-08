@@ -19,5 +19,10 @@
   "playerFreezeBy": "You've been frozen by {player}.",
   "playerUnfreezeBy": "You've been unfrozen by {player}.",
 
+  "enteringStaffMode": "You've entered in staff mode.",
+  "leavingStaffMode": "You've left staff mode.",
+
+  "staffChatFormat": "&8[&cStaff&8] &7{player}: &f{message}",
+
   "errorWhileProcessingCommand": "An error occurred while processing the command. Please, contact the server administrator."
 }

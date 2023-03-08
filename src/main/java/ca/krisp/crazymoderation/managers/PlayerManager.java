@@ -28,7 +28,7 @@ public class PlayerManager {
             Logger.error(LanguageParser.get("playerNotFound"));
             return;
         }
-        players.put(uuid, new CMPlayer(Bukkit.getPlayer(uuid)));
+        players.put(uuid, new CMPlayer(player));
     }
 
     public void removePlayer(Player player){

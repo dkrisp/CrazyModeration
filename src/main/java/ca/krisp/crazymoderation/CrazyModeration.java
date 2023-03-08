@@ -6,6 +6,7 @@ import ca.krisp.crazymoderation.commands.CommandManager;
 import ca.krisp.crazymoderation.commands.CommandSS;
 import ca.krisp.crazymoderation.language.LanguageParser;
 import ca.krisp.crazymoderation.managers.PlayerManager;
+import ca.krisp.crazymoderation.managers.StaffChatManager;
 import ca.krisp.crazymoderation.task.PlayerDataSavingTask;
 import ca.krisp.crazymoderation.task.ServerAsyncTask;
 import ca.krisp.crazymoderation.utils.Logger;
@@ -23,6 +24,7 @@ public class CrazyModeration extends JavaPlugin {
     private final Gson gson = new Gson();
     private final CommandManager commandManager;
     private final PlayerManager playerManager;
+    private final StaffChatManager staffChatManager;
 
     private boolean debug;
 
@@ -30,8 +32,9 @@ public class CrazyModeration extends JavaPlugin {
     private int taskServerID = -1;
 
     public CrazyModeration() {
-        commandManager = new CommandManager(this);
+        this.commandManager = new CommandManager(this);
         this.playerManager = new PlayerManager(this);
+        this.staffChatManager = new StaffChatManager();
     }
 
     @Override
@@ -80,6 +83,10 @@ public class CrazyModeration extends JavaPlugin {
 
     public PlayerManager getPlayerManager() {
         return playerManager;
+    }
+
+    public StaffChatManager getStaffChatManager() {
+        return staffChatManager;
     }
 
     @Override

@@ -94,9 +94,14 @@ public class LanguageParser {
         return prefix + " " + Color.colorize(message);
     }
 
-    public static String getUnformatted(String message){
+    public static String getUnformatted(String key){
         if(obj == null)
             return "Language file not loaded!";
-        return Color.colorize((String) obj.get(message));
+        Object objKey = obj.get(key);
+        if(objKey == null){
+            return "Language key not found! Please report this to the admin. Key: " + key + "";
+        }
+        String message = (String) objKey;
+        return Color.colorize(message);
     }
 }

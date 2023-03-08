@@ -79,6 +79,11 @@ mysql:
   username: "username"
   password: "password"
 
+# The prefix that is used to send a message in the staff chat.
+# The message in the staff chat will only be send if the player
+# has the permission "crazymoderation.staffchat".
+staffChatPrefix: "$"
+
 # This option will be use only if you want to see the errors to
 # fix them. If you don't want to see the errors, please set this
 # option to false. If you want to report any errors, please set
